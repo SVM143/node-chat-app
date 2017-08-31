@@ -13,12 +13,12 @@ var count=1;
 io.on('connection',(socket) =>{
    console.log(`New  user ${count++} Connected`);
 
-   socket.emit('newEmail',{
-       from:'sourav.vikas6@gmail.com',
+   socket.emit('createMessage',{
+       from:'Server',
        text:'kya hal hai bhai'
     });
-   socket.on('createEmail' ,(newEmail)=>{
-        console.log('createMail',newEmail);
+   socket.on('createMessage' ,(msg)=>{
+        console.log('New Message',msg);
     });
      socket.on('disconnect',(socket) =>{
     console.log(`user ${--count} disconnected`);
