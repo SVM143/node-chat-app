@@ -17,9 +17,10 @@ io.on('connection',(socket) =>{
 
     socket.emit('newMessage',generateMessage('Admin','welcome to group'));
     socket.broadcast.emit('newMessage',generateMessage('Admin','New user found'));
-    socket.on('createMessage' ,(msg) =>{
+    socket.on('createMessage' ,(msg,callback) =>{
         console.log('New Message',msg);
         io.emit('newMessage',generateMessage(msg.from,msg.text));
+        callback();
     });
 
     socket.on('createLocationMessage' ,(msg) =>{

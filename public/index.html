@@ -1,21 +1,34 @@
-<!Doctype html>
+<!DOCTYPE html>
+
 <html>
+
 <head>
-<meta charset="utf-8">
+    <meta charset="utf-8">
+    <title>Chat | ChatApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body>
 
-<p>Welcome to chat room where we can chat</p>
+<body class="chat">
 
-<ol id="messages"></ol>
-<form id="message-form">
-    <input name="message" type="text" placeholder="Enter the text"/>
-    <button>send</button>
-</form>
+<div class="chat__sidebar">
+    <h3>People</h3>
+    <div id="users"></div>
+</div>
 
-    <button id="send-location">send location</button>
-<script src="/socket.io/socket.io.js"></script>
-<script src="/js/libs/jquery-3.2.1.min.js"></script>
-<script src="js/index.js"></script>
-</body>
+<div class="chat__main">
+    <ol id="messages" class="chat__messages"></ol>
+
+    <div class="chat__footer">
+    <form id="message-form">
+        <input name="message" type="text" placeholder="Message" autofocus autocomplete="off"/>
+        <button>Send</button>
+    </form>
+    <button id="send-location">Send location</button>
+</div>
+</div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/libs/jquery-3.2.1.min.js"></script>
+    <script src="js/index.js"></script>
+    </body>
 </html>
