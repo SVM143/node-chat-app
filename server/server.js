@@ -5,6 +5,7 @@ const publicPath=path.join(__dirname,'../public');
 const socketIO=require('socket.io');
 
 const {generateMessage,generateLocationMessage} = require('./utils/message');
+const {isRealString} = require('./utils/validation');
 const port=process.env.PORT || 3004;
 var app=express();
 var server=http.createServer(app);
@@ -25,6 +26,12 @@ io.on('connection',(socket) =>{
         callback();
     });
 
+    socket.on('join',(params,callback) => {
+        if(!isRealString(params.name)||!isRealString(params.room)){
+            callback('Name and Room name are required');
+        }
+            callback();
+    });
     socket.on('createLocationMessage' ,(msg) =>{
         console.log('New Message',msg);
         io.emit('newLocationMessage',generateLocationMessage('Admin',msg.latitude,msg.longitude));
