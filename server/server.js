@@ -16,7 +16,9 @@ io.on('connection',(socket) =>{
    console.log(`New  user ${count++} Connected`);
 
     socket.emit('newMessage',generateMessage('Admin','welcome to group'));
+
     socket.broadcast.emit('newMessage',generateMessage('Admin','New user found'));
+
     socket.on('createMessage' ,(msg,callback) =>{
         console.log('New Message',msg);
         io.emit('newMessage',generateMessage(msg.from,msg.text));
@@ -25,7 +27,7 @@ io.on('connection',(socket) =>{
 
     socket.on('createLocationMessage' ,(msg) =>{
         console.log('New Message',msg);
-        io.emit('newLocationMessage',generateLocationMessage('My Location',msg.latitude,msg.longitude));
+        io.emit('newLocationMessage',generateLocationMessage('Admin',msg.latitude,msg.longitude));
     });
 
     socket.on('disconnect',(socket) =>{
